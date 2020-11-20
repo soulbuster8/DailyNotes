@@ -71,4 +71,8 @@ Length of the short key :- 6 or 8 or 10.<br/>
 8 letters long key would result in 64^8 = ~281 billion for base 64 encoding. <br/>
 So 6 letter keys would be suffice.<br/>
 
-1. We can compute a unique hash(MD5, SHA256) of the given url. 
+1. We can compute a unique hash(MD5, SHA256) of the given url:- It will produce a 128-bit hash value. After base64 encoding, we'll get a string having more than 21 characters
+(since each base64 character encodes 6 bit of the hash value). We can take the first 6(or 8) letters for the key, this would result in key duplication; to resolve that, we can
+choose some other characters out of the encoding string or swap some characters.
+
+   
