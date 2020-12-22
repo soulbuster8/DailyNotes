@@ -71,7 +71,14 @@ the number of disk accesses. <br/>
 **BitMap Index** <br/>
 
 
-In MYSQL, Primary key is usually stored with every single index so that query can be faster.
+1. In MYSQL, Primary key is usually stored with every single index so that query can be faster.
+2. In MYSQL(InnoDB engine), there is always primary key(if we didn't specify, MYSQL will create for us) and primary key index and that index will point to the table. Any
+    secondary index will not point to the table, it will point to the primary value which corresponds to the table. <br/>
+    
+**Covering Index** :- <br/>
+An index that includes all the columns retrieved by a query. Instead of using the index values as pointers to find the full table rows, the query returns values from the index
+structure, saving disk I/O. InnoDB can apply this optimization technique to more indexes than MYISAM can, because InnoDB secondary indexes also include the primary key columns.
+
 
 Note:-<br/>
 There are two things in DB:- <br/>

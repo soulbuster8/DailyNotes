@@ -25,6 +25,14 @@ Cloud
 1. AWS
 2. GCP
 
+Hystrix
+Zuul
+
+Api Gateway
+
+Service Discovery
+Apache Zookeeper
+
 
 
 1. Communication protocols(TCP, UDP, HTTP, Web Sockets, GRPC). HTTP How HTTP works. 
@@ -36,4 +44,4 @@ asynchronous(like Node.js) or multi-threaded like apache tomcat. Nginx web serve
 6. Messaging System :- Rabbit MQ, Zero Queue, Kafka(Publisher Subscriber System)
 7. Web frameworks :- Node JS, Django, 
 8. Message formats :- XML, Json, Protocol buffer(Have to Look into it.)
-9. Security :- 
+9. Security :- Encryption, TLS, How to communicate from one place to another so that we can prevent man-in-middle attacks, firewall, Denial of service attacks, Web security. 

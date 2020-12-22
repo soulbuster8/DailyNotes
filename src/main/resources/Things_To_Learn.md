@@ -23,3 +23,19 @@ What will happen when Messaging queue will fail
 
 
 Database Indexing
+
+ScheduledExecutorService :- 
+
+
+
+
+
+
+
+Adaptive bit rate
+DNS based routing
+B Tree and B+ Tree
+Map Reduce
+BigTable
+
+Spring interview questions
