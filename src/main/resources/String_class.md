@@ -7,7 +7,7 @@ the existing string in the string pool.
 String s1="Hello";
 String s2="Hello";
 System.out.println(s1==s2); //true
-```
+```0
 
 
 2. new String :- 

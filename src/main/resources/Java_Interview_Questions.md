@@ -8,6 +8,9 @@
 7. Comparator vs Comparable :- https://www.javatpoint.com/difference-between-comparable-and-comparator
 8. ArrayList vs LinkedList 
 9. Thread vs Runnable Interface
+10. Can I override and overload static methods in Java. Ans: No
+11. ClassNotFoundException vs NoClassDefFoundError
+12. Why wait notify and notifyAll called from synchronized block or method in Java
 
 
 
@@ -129,3 +132,34 @@ throw an error for that.
     ex.:- NullPointerException, IndexOutOfBound.     
 11. Volatile variable :- It is a special variable which is used to signal threads, a compiler that this particular variables are going to be updated by multiple threads inside
     java application. That means its value should always be read from main memory and thread should not use cached value of that variable from its own stack.
+12. ClassNotFoundException and NoClassDefFoundError occur when a particular class is not found at runtime. ClassNotFoundException is an exception that occurs when you try 
+    to load a class at run time using Class.forName() or loadClass() methods and mentioned classes are not found in the classpath. NoClassDefFoundError is an error that occurs
+    when a particular class is present at compile time, but was missing at run time.
+13. If we don't call wait() or notify() method from synchronized context we will receive IllegalMonitorStateException in Java.
+    Que :- Why this exception will occur ?
+    Ans :- We use wait(), notify(), or notifyAll() method mostly for inter-thread communication in Java. One thread is waiting after checking a condition e.g. In the classic
+    Producer-Consumer problem, the Producer thread waits if the buffer is full and Consumer thread notify Producer thread after it creates a space in the buffer by consuming 
+    an element. We understand from this :-
+    1. The Producer thread tests the condition (buffer is full or not) and confirms that it must wait (after finding buffer is full).
+    2. The Consumer thread sets the condition after consuming an element from a buffer.
+    3. The Consumer thread calls the notify () method; this goes unheard since the Producer thread is not yet waiting.
+    4. The Producer thread calls the wait () method and goes into waiting state.
+    
+    So due to race condition here we potential lost a notification and if we use buffer or just one element Produce thread will be waiting forever and your program will hang.
+    
+14. MetaSpace vs Permgen :- In java 8, PermGen is completely removed and replaced with MetaSpace. 
+PermGen is the memory area in Heap that is used by the JVM to store class and method objects. If your application loads lots of classes, PermGen utilization will be high. 
+PermGen also holds ‘interned’ Strings.  It is not unusal to see the error “java.lang.OutOfMemoryError: PermGen space“ if you are loading unusual number of classes.
+
+Metaspace is NOT part of Heap. Rather Metaspace is part of Native Memory (process memory) which is only limited by the Host Operating System.
+
+Que :- what is the significance of this change?
+Ans :- While you will NOT run out of PermGen space anymore (since there is NO PermGen), you may consume excessive Native memory making the total process size large. 
+    The issue is, if your application loads lots of classes (and/or interned strings), you may actually bring down the Entire Server (not just your application).
+    Why ? Because the native memory is only limited by the Operating System. This means you can literally take up all the memory on the Server. Not good. It is 
+    critical that you add the new option -XX:MaxMetaspaceSize  which sets the Maximum Metaspace size for your application.  Note that it is no longer sufficient to just
+    monitor the Heap Size. You must also monitor the Metaspace which you can do by just keeping an eye on the ‘process size’ using your Operating System utilities
+    (Example: ‘top’ in Unix/Linux, ‘Task Manager’ in Windows).
+    
+15. The string constant pool is a small cache that resides within the heap. Java stores all the values inside the string constant pool on direct allocation. This way, 
+    if a similar value needs to be accessed again, a new string object created in the stack can reference it directly with the help of a pointer.

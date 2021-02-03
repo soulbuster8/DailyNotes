@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.util.concurrent.CompletableFuture.allOf;
 
@@ -180,6 +182,22 @@ class Process {
 
     public void setEndTime(long endTime) {
         this.endTime = endTime;
+    }
+}
+
+
+class X {
+
+    public static void main(String[] args) {
+        String str = "AE item number 17 in invalid status";
+        Pattern pattern = Pattern.compile("AE item number (.*)? in invalid status");
+        Matcher matcher = pattern.matcher(str);
+
+        while (matcher.find())
+        {
+            System.out.println(matcher.group());
+        }
+
     }
 }
 
